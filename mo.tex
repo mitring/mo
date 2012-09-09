@@ -1,0 +1,106 @@
+% создаем документ типа "отчет"
+\documentclass[a4paper,12pt]{report}
+% для вывода русских символов задаем шрифты и кодировки
+\usepackage[OT2,T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{pscyr}
+% рулим полями страницы
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=1.5cm]{geometry}
+% включаем возможность создания длинных таблиц, которые находятся на нескольких листах
+\usepackage{longtable}
+% рулим header-ами и footer-ами
+\usepackage{fancyhdr}
+% включаем возможность copy-paste из PDF
+\usepackage{cmap}
+% для абзацных отступов (красная строка)
+\usepackage{indentfirst}
+% в России после номера таблицы ставится точка, а не двоеточие, поэтому нужен этот пакет
+\usepackage[font=footnotesize,labelsep=period,justification=raggedleft,skip=0pt,singlelinecheck=false]{caption}
+% нужно для ввода в таблицы инструкции m{..} - позволяет центрировать по вертикали содержимое ячеек
+\usepackage{array}
+% нужно для аналогов rowspan в HTML
+\usepackage{multirow}
+
+\bibliographystyle{unsrt} % стиль библиографических ссылок БибТеХа
+
+\newcommand{\docTitle}{Методы оптимизации}
+\newcommand{\docVersion}{0.1}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % своя команда для рисования линий на титульной странице
+
+\renewcommand{\theenumi}{\arabic{enumi}} % меняем везде перечисления на цифра.цифра
+\renewcommand{\baselinestretch}{1.25} % делаем полуторный интервал
+
+% переопределяем стиль страницы с собственными header-ами и footer-ами
+\fancypagestyle{plain}
+{
+  \lhead{\textbf{\docTitle} (текст лекций)} % слева в header-е название документа
+  \chead{}
+  \rhead{\emph{Версия:} \docVersion} % справа в header-е номер версии
+  \lfoot{}
+  \cfoot{}
+  \rfoot{\thepage} % справа в footer-е номер страницы
+  \renewcommand{\headrulewidth}{0.4pt} % отчеркивание для header-а
+  \renewcommand{\footrulewidth}{0.4pt} % отчеркивание для footer-а
+}
+
+\begin{document}
+
+\begin{titlepage}
+
+\begin{center}
+
+% Разработчик
+\textsc{\LARGE Прудников А.М.}\\[7.0cm]
+
+% Общий заголовок
+\textsc{\Large Описание электронного формата документа}\\[0.5cm]
+
+% Заголовок конкретного документа
+\HRule \\[0.4cm]
+{ \huge \bfseries \docTitle}\\[0.4cm]
+
+\HRule \\[1.5cm]
+
+% Редакция
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft}% \large
+\emph{Предназначение:} \\
+сдача расчетов Ф4-ФСС РФ в 2011-ом году с применением ЭЦП
+\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Версия:} \docVersion
+\end{flushright}
+\end{minipage}
+
+\vfill
+
+% Дата
+{\large Москва, 2012}
+
+\end{center}
+
+\end{titlepage}
+
+\setcounter{page}{2}
+
+\pagestyle{plain}
+
+\clearpage
+
+\tableofcontents
+
+\clearpage
+
+\chapter{Исследование операций и место методов оптимизации в данной дисциплине}
+
+\section{Понятия и определения}
+
+\clearpage
+
+\addcontentsline{toc}{chapter}{Литература} % список литературы автоматически в оглавление не попадает
+\bibliography{biblio/doc}
+
+\end{document}
